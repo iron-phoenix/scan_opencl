@@ -6,6 +6,8 @@ __kernel void scan_blelloch(__global float * a, __global float * r, __local floa
     uint block_size = get_local_size(0);
     uint dp = 1;
 
+	if (gid >= n) return;
+
     b[lid] = a[gid];
 
     for(uint s = block_size>>1; s > 0; s >>= 1)
